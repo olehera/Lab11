@@ -82,12 +82,14 @@ public class Simulatore {
 						ev.getClienti().setTavolo(t);
 						bancone = false;
 						numSoddisfatti += ev.getClienti().getNumPersone();
-						queue.add(new Evento(ev.getTempo().plus(ev.getClienti().getDurata()), TipoEvento.TAVOLO_LIBERATO, ev.getClienti()));
+						queue.add(new Evento(ev.getTempo().plus(ev.getClienti().getDurata()), TipoEvento.PARTENZA_GRUPPO_CLIENTI, ev.getClienti()));
 						break ;
 					} 
 					
 				if ( bancone ) {   
-					if (ev.getClienti().getTolleranza() > 0.5)
+					float probabilita = rand.nextFloat();
+					
+					if ( probabilita <= ev.getClienti().getTolleranza() )
 						numSoddisfatti += ev.getClienti().getNumPersone();
 					else
 						numInsoddisfatti += ev.getClienti().getNumPersone();
@@ -95,7 +97,7 @@ public class Simulatore {
 				
 				break;
 
-			case TAVOLO_LIBERATO:
+			case PARTENZA_GRUPPO_CLIENTI:
 				ev.getClienti().getTavolo().setOccupato(false);
 				
 				break;

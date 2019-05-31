@@ -6,7 +6,7 @@ public class Evento implements Comparable<Evento> {
 	
 	public enum TipoEvento {
 		ARRIVO_GRUPPO_CLIENTI,
-		TAVOLO_LIBERATO
+		PARTENZA_GRUPPO_CLIENTI
 	}
 	
 	private LocalTime tempo;
